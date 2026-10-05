@@ -92,6 +92,19 @@ export const createNewTypedThreat = function (modelType, cellType, number) {
             type = tc('threats.model.linddun.linkability');
             break;
 
+        case 'MAESTRO':
+            title = tc('threats.generic.maestro');
+            if (cellType === 'tm.Actor') {
+                type = tc('threats.model.maestro.agentEcosystem');
+            } else if (cellType === 'tm.Process') {
+                type = tc('threats.model.maestro.agentFrameworks');
+            } else if (cellType === 'tm.Store') {
+                type = tc('threats.model.maestro.dataOperations');
+            } else {
+                type = tc('threats.model.maestro.crossLayer');
+            }
+            break;
+
         case 'PLOT4ai':
             title = tc('threats.generic.plot4ai');
             if (cellType === 'tm.Actor') {

@@ -1,0 +1,75 @@
+{
+    "version": "2.6.2",
+    "summary": {
+        "title": "MAESTRO Threat Model",
+        "owner": "Security",
+        "description": "A minimal agentic system modelled with MAESTRO.",
+        "id": 0
+    },
+    "detail": {
+        "contributors": [],
+        "diagrams": [
+            {
+                "id": 0,
+                "title": "Agent Gateway",
+                "diagramType": "MAESTRO",
+                "placeholder": "New MAESTRO diagram description",
+                "thumbnail": "./public/content/images/thumbnail.maestro.jpg",
+                "version": "2.6.2",
+                "cells": [
+                    {
+                        "position": {
+                            "x": 310,
+                            "y": 200
+                        },
+                        "size": {
+                            "width": 110,
+                            "height": 110
+                        },
+                        "attrs": {
+                            "text": {
+                                "text": "Agent Orchestrator"
+                            },
+                            "body": {
+                                "stroke": "red",
+                                "strokeWidth": 2.5,
+                                "strokeDasharray": null
+                            }
+                        },
+                        "shape": "process",
+                        "id": "6f0b6b54-6a0e-4c51-9e5b-8f5f0d4a1c01",
+                        "zIndex": 1,
+                        "data": {
+                            "type": "tm.Process",
+                            "name": "Agent Orchestrator",
+                            "description": "",
+                            "outOfScope": false,
+                            "reasonOutOfScope": "",
+                            "privilegeLevel": "",
+                            "hasOpenThreats": true,
+                            "threats": [
+                                {
+                                    "id": "0d4f7a7e-1c2b-4a8e-9d3f-2b6c8e1f5a10",
+                                    "title": "Poisoned agent memory",
+                                    "status": "Open",
+                                    "severity": "High",
+                                    "type": "L3 – Agent frameworks",
+                                    "description": "Untrusted content written to long-term memory changes later agent decisions.",
+                                    "mitigation": "Validate and attribute memory writes.",
+                                    "modelType": "MAESTRO",
+                                    "asi": "ASI06",
+                                    "new": false,
+                                    "number": 1,
+                                    "score": ""
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ],
+        "diagramTop": 1,
+        "reviewer": "",
+        "threatTop": 1
+    }
+}

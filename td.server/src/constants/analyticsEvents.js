@@ -60,10 +60,10 @@ export const analyticsEventProperties = Object.freeze({
         editor: Object.freeze(['diagram', 'threat_model'])
     }),
     [analyticsEvents.DIAGRAM_CREATED]: Object.freeze({
-        methodology: Object.freeze(['CIA', 'CIADIE', 'LINDDUN', 'PLOT4AI', 'STRIDE', 'EOP', 'GENERIC'])
+        methodology: Object.freeze(['CIA', 'CIADIE', 'LINDDUN', 'MAESTRO', 'PLOT4AI', 'STRIDE', 'EOP', 'GENERIC'])
     }),
     [analyticsEvents.DIAGRAM_METHODOLOGY_USED]: Object.freeze({
-        methodology: Object.freeze(['CIA', 'CIADIE', 'LINDDUN', 'PLOT4AI', 'STRIDE', 'EOP', 'GENERIC'])
+        methodology: Object.freeze(['CIA', 'CIADIE', 'LINDDUN', 'MAESTRO', 'PLOT4AI', 'STRIDE', 'EOP', 'GENERIC'])
     }),
     [analyticsEvents.THREAT_STATUS_UPDATED]: Object.freeze({
         status: Object.freeze(['NotApplicable', 'Open', 'Mitigated', 'Accepted', 'Transferred', 'Avoided', 'Eliminated'])

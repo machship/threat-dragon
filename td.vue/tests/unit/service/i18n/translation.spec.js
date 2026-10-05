@@ -7,6 +7,7 @@ import { getPrimaryStatusOptions, getTreatmentStatusOptions } from '@/service/th
 import cia from '@/service/threats/models/cia.json';
 import ciadie from '@/service/threats/models/ciadie.json';
 import linddun from '@/service/threats/models/linddun.json';
+import maestro from '@/service/threats/models/maestro.json';
 import plot4ai from '@/service/threats/models/plot4ai.json';
 import stride from '@/service/threats/models/stride.json';
 import threatModels from '@/service/threats/models/index.js';
@@ -62,6 +63,7 @@ describe('service/i18n/translation.js', () => {
             'threats.generic.default',
             'threats.generic.eop',
             'threats.generic.linddun',
+            'threats.generic.maestro',
             'threats.generic.plot4ai',
             'threats.generic.stride'
         ].forEach((key) => {
@@ -83,6 +85,22 @@ describe('service/i18n/translation.js', () => {
     it('translates every threat-model key from the model definitions', () => {
         [cia, ciadie, linddun, plot4ai, stride]
             .flatMap(modelTranslationKeys)
+            .forEach((key) => {
+                expect(translateKnownKey(translate, key)).toBe(translated(key));
+            });
+    });
+
+    it('translates every MAESTRO category key', () => {
+        const { actor, flow, store, process, all } = maestro;
+        modelTranslationKeys({ actor, flow, store, process, all })
+            .forEach((key) => {
+                expect(translateKnownKey(translate, key)).toBe(translated(key));
+            });
+    });
+
+    it('translates every OWASP Agentic Top 10 key', () => {
+        threatModels.asiIds
+            .map((id) => `threats.asi.${id}`)
             .forEach((key) => {
                 expect(translateKnownKey(translate, key)).toBe(translated(key));
             });

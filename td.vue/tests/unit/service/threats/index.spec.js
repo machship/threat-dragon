@@ -67,6 +67,26 @@ describe('service/threats/index.js', () => {
         });
     });
 
+    describe('create new MAESTRO threat', () => {
+        let threat;
+
+        beforeEach(() => {
+            threat = createNewTypedThreat('MAESTRO');
+        });
+
+        it('has a typed title', () => {
+            expect(threat.title).toEqual('New MAESTRO threat');
+        });
+
+        it('has the Cross-layer type', () => {
+            expect(threat.type).toEqual('Cross-layer');
+        });
+
+        it('has a MAESTRO modelType', () => {
+            expect(threat.modelType).toEqual('MAESTRO');
+        });
+    });
+
     describe('create new PLOT4ai threat', () => {
         let threat;
 
@@ -165,6 +185,22 @@ describe('service/threats/index.js', () => {
             expect(createNewTypedThreat('generic').modelType).toEqual('default');
         });
 
+        it('uses the MAESTRO actor type', () => {
+            expect(createNewTypedThreat('MAESTRO', 'tm.Actor').type).toEqual('L7 – Agent ecosystem');
+        });
+
+        it('uses the MAESTRO process type', () => {
+            expect(createNewTypedThreat('MAESTRO', 'tm.Process').type).toEqual('L3 – Agent frameworks');
+        });
+
+        it('uses the MAESTRO store type', () => {
+            expect(createNewTypedThreat('MAESTRO', 'tm.Store').type).toEqual('L2 – Data operations');
+        });
+
+        it('uses the MAESTRO flow type', () => {
+            expect(createNewTypedThreat('MAESTRO', 'tm.Flow').type).toEqual('Cross-layer');
+        });
+
         it('uses the PLOT4ai actor type', () => {
             expect(createNewTypedThreat('PLOT4ai', 'tm.Actor').type).toEqual('Accessibility');
         });
@@ -198,6 +234,26 @@ describe('service/threats/index.js', () => {
             });
 
             expect(createNewTypedThreat('STRIDE', 'tm.Process').type).toEqual('Tampering');
+        });
+
+        it('selects the least frequent MAESTRO layer', () => {
+            jest.spyOn(store, 'get').mockReturnValue({
+                state: {
+                    cell: {
+                        ref: {
+                            data: {
+                                threatFrequency: {
+                                    securityCompliance: 2,
+                                    agentEcosystem: 0,
+                                    crossLayer: 1
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            expect(createNewTypedThreat('MAESTRO', 'tm.Actor').type).toEqual('L7 – Agent ecosystem');
         });
     });
     describe('hasOpenThreats', () => {

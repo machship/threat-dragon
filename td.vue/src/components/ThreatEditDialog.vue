@@ -91,6 +91,23 @@
                     </b-col>
                 </b-form-row>
 
+                <b-form-row v-if="threat.modelType === 'MAESTRO'">
+                    <b-col>
+                        <b-form-group
+                            id="threat-asi-group"
+                            :label="$t('threats.properties.asi')"
+                            label-for="threat-asi"
+                        >
+                            <td-form-select
+                                id="threat-asi"
+                                v-model="threat.asi"
+                                :options="asiOptions"
+                            >
+                            </td-form-select>
+                        </b-form-group>
+                    </b-col>
+                </b-form-row>
+
                 <b-form-row
                     v-if="
                         threat &&
@@ -316,6 +333,15 @@ export default {
         modalTitle() {
             return this.$t('threats.edit') + ' #' + this.number;
         },
+        asiOptions() {
+            return [
+                { value: '', text: this.$t('threats.asi.none') },
+                ...threatModels.asiIds.map((id) => ({
+                    value: id,
+                    text: `${id}: ${translateKnownKey(this.$t, `threats.asi.${id}`)}`
+                }))
+            ];
+        },
         eopGames() {
             return getAllGames().map(g => ({
                 value: g.id,
@@ -345,6 +371,7 @@ export default {
                 'CIA',
                 'CIADIE',
                 'LINDDUN',
+                'MAESTRO',
                 'PLOT4ai',
                 'STRIDE',
                 'EOP',
@@ -391,6 +418,9 @@ export default {
                 (x) => x.id === threatId
             );
             this.threat = { ...crnthreat };
+            if (this.threat.modelType === 'MAESTRO' && !this.threat.asi) {
+                this.threat.asi = '';
+            }
 
             this.$nextTick(() => {
                 this.isLoadingThreat = false;
@@ -467,6 +497,11 @@ export default {
                     threatRef.type = this.selectedGameId;
                 } else {
                     threatRef.type = this.threat.type;
+                }
+                if (threatRef.modelType === 'MAESTRO' && this.threat.asi) {
+                    threatRef.asi = this.threat.asi;
+                } else {
+                    delete threatRef.asi;
                 }
                 this.$store.dispatch(cellDataUpdated, this.cellRef.data);
                 this.$store.dispatch(tmActions.modified);

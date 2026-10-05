@@ -27,6 +27,15 @@ PROCESS | X | X | X | X | X |   | X
 */
 import linddun from './linddun';
 
+/* MAESTRO per element (L1-L7 layers plus cross-layer)
+          1 | 2 | 3 | 4 | 5 | 6 | 7 | X
+ACTOR   |   |   |   |   |   | X | X | X
+STORE   | X | X |   | X | X | X |   | X
+FLOW    |   | X | X | X |   | X | X | X
+PROCESS | X |   | X | X | X | X | X | X
+*/
+import maestro from './maestro';
+
 /* PLOT4ai per element
           T | A | I | S | S | U | E | N
 ACTOR   |   | X | X | X | X | X | X |
@@ -65,6 +74,7 @@ const generic = Object.assign(
     Object.assign({ 'threats.model.cia.header': 'ciaHeader' }, swapKeyValuePairs(cia)),
     Object.assign({ 'threats.model.ciadie.header': 'ciaDieHeader' }, swapKeyValuePairs(ciaDie)),
     Object.assign({ 'threats.model.linddun.header': 'linddunHeader' }, swapKeyValuePairs(linddun.all)),
+    Object.assign({ 'threats.model.maestro.header': 'maestroHeader' }, swapKeyValuePairs(maestro.all)),
     Object.assign({ 'threats.model.plot4ai.header': 'plot4aiHeader' }, swapKeyValuePairs(plot4ai.all))
 );
 
@@ -84,6 +94,10 @@ const getByTranslationValue = (translation) => {
 
     if (Object.values(linddun.all).find(x => x.toLowerCase() === translation.toLowerCase())) {
         return 'LINDDUN';
+    }
+
+    if (Object.values(maestro.all).find(x => x.toLowerCase() === translation.toLowerCase())) {
+        return 'MAESTRO';
     }
 
     if (Object.values(plot4ai.all).find(x => x.toLowerCase() === translation.toLowerCase())) {
@@ -116,6 +130,24 @@ const getThreatTypesByElement = (modelType, cellType) => {
             types = linddun.actor;
         } else {
             types = linddun.default;
+        }
+        break;
+
+    case 'MAESTRO' :
+        switch (cellType) {
+        case 'tm.Actor' :
+            types = maestro.actor;
+            break;
+        case 'tm.Process' :
+            types = maestro.process;
+            break;
+        case 'tm.Store' :
+            types = maestro.store;
+            break;
+        case 'tm.Flow' :
+        default:
+            types = maestro.flow;
+            break;
         }
         break;
 
@@ -186,6 +218,24 @@ const getFrequencyMapByElement = (modelType, cellType) => {
         }
         break;
 
+    case 'MAESTRO':
+        switch(cellType) {
+        case 'tm.Actor' :
+            Object.keys(maestro.actor).map((k) => {freqMap[k] = 0;});
+            break;
+        case 'tm.Process' :
+            Object.keys(maestro.process).map((k) => {freqMap[k] = 0;});
+            break;
+        case 'tm.Store' :
+            Object.keys(maestro.store).map((k) => {freqMap[k] = 0;});
+            break;
+        case 'tm.Flow' :
+        default:
+            Object.keys(maestro.flow).map((k) => {freqMap[k] = 0;});
+            break;
+        }
+        break;
+
     case 'PLOT4AI':
         switch(cellType) {
         case 'tm.Actor' :
@@ -229,10 +279,13 @@ const getFrequencyMapByElement = (modelType, cellType) => {
     return freqMap;
 };
 
-const allModels = ['CIA', 'CIADIE', 'LINDDUN', 'PLOT4ai', 'STRIDE', 'EOP'];
+const allModels = ['CIA', 'CIADIE', 'LINDDUN', 'MAESTRO', 'PLOT4ai', 'STRIDE', 'EOP'];
+
+const asiIds = maestro.asi;
 
 export default {
     allModels,
+    asiIds,
     getByTranslationValue,
     getThreatTypesByElement,
     getFrequencyMapByElement

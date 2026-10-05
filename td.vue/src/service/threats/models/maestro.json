@@ -1,0 +1,54 @@
+{
+    "actor": {
+        "securityCompliance": "threats.model.maestro.securityCompliance",
+        "agentEcosystem": "threats.model.maestro.agentEcosystem",
+        "crossLayer": "threats.model.maestro.crossLayer"
+    },
+    "flow": {
+        "dataOperations": "threats.model.maestro.dataOperations",
+        "agentFrameworks": "threats.model.maestro.agentFrameworks",
+        "deploymentInfrastructure": "threats.model.maestro.deploymentInfrastructure",
+        "securityCompliance": "threats.model.maestro.securityCompliance",
+        "agentEcosystem": "threats.model.maestro.agentEcosystem",
+        "crossLayer": "threats.model.maestro.crossLayer"
+    },
+    "store": {
+        "foundationModels": "threats.model.maestro.foundationModels",
+        "dataOperations": "threats.model.maestro.dataOperations",
+        "deploymentInfrastructure": "threats.model.maestro.deploymentInfrastructure",
+        "evaluationObservability": "threats.model.maestro.evaluationObservability",
+        "securityCompliance": "threats.model.maestro.securityCompliance",
+        "crossLayer": "threats.model.maestro.crossLayer"
+    },
+    "process": {
+        "foundationModels": "threats.model.maestro.foundationModels",
+        "agentFrameworks": "threats.model.maestro.agentFrameworks",
+        "deploymentInfrastructure": "threats.model.maestro.deploymentInfrastructure",
+        "evaluationObservability": "threats.model.maestro.evaluationObservability",
+        "securityCompliance": "threats.model.maestro.securityCompliance",
+        "agentEcosystem": "threats.model.maestro.agentEcosystem",
+        "crossLayer": "threats.model.maestro.crossLayer"
+    },
+    "all": {
+        "foundationModels": "threats.model.maestro.foundationModels",
+        "dataOperations": "threats.model.maestro.dataOperations",
+        "agentFrameworks": "threats.model.maestro.agentFrameworks",
+        "deploymentInfrastructure": "threats.model.maestro.deploymentInfrastructure",
+        "evaluationObservability": "threats.model.maestro.evaluationObservability",
+        "securityCompliance": "threats.model.maestro.securityCompliance",
+        "agentEcosystem": "threats.model.maestro.agentEcosystem",
+        "crossLayer": "threats.model.maestro.crossLayer"
+    },
+    "asi": [
+        "ASI01",
+        "ASI02",
+        "ASI03",
+        "ASI04",
+        "ASI05",
+        "ASI06",
+        "ASI07",
+        "ASI08",
+        "ASI09",
+        "ASI10"
+    ]
+}

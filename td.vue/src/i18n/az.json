@@ -207,6 +207,11 @@
                 "defaultDescription": "Yeni LINDDUN diaqramının təsviri",
                 "select": "LINDDUN"
             },
+            "maestro": {
+                "defaultTitle": "New MAESTRO diagram",
+                "defaultDescription": "New MAESTRO diagram description",
+                "select": "MAESTRO"
+            },
             "plot4ai": {
                 "defaultTitle": "Yeni PLOT4ai diaqramı",
                 "defaultDescription": "Yeni PLOT4ai diaqramının təsviri",
@@ -413,6 +418,17 @@
                 "unawareness": "Məlumatsızlıq",
                 "nonCompliance": "Tələblərə uyğunsuzluq"
             },
+            "maestro": {
+                "header": "--- MAESTRO ---",
+                "foundationModels": "L1 – Foundation models",
+                "dataOperations": "L2 – Data operations",
+                "agentFrameworks": "L3 – Agent frameworks",
+                "deploymentInfrastructure": "L4 – Deployment and infrastructure",
+                "evaluationObservability": "L5 – Evaluation and observability",
+                "securityCompliance": "L6 – Security and compliance",
+                "agentEcosystem": "L7 – Agent ecosystem",
+                "crossLayer": "Cross-layer"
+            },
             "plot4ai": {
                 "header": "--- PLOT4ai ---",
                 "techniqueProcesses": "Texnika və proseslər",
@@ -449,6 +465,7 @@
             "cia": "Yeni CIA təhdidi",
             "ciadie": "Yeni CIA-DIE təhdidi",
             "linddun": "Yeni LINDDUN təhdidi",
+            "maestro": "New MAESTRO threat",
             "plot4ai": "Yeni PLOT4ai təhdidi",
             "stride": "Yeni STRIDE təhdidi",
             "eop": "Yeni EoP təhdidi"
@@ -471,7 +488,21 @@
             "score": "Bal",
             "status": "Vəziyyət",
             "title": "Başlıq",
-            "type": "Növ"
+            "type": "Növ",
+            "asi": "OWASP Agentic Top 10"
+        },
+        "asi": {
+            "none": "None",
+            "ASI01": "Agent Goal Hijack",
+            "ASI02": "Tool Misuse and Exploitation",
+            "ASI03": "Identity and Privilege Abuse",
+            "ASI04": "Agentic Supply Chain Vulnerabilities",
+            "ASI05": "Unexpected Code Execution",
+            "ASI06": "Memory & Context Poisoning",
+            "ASI07": "Insecure Inter-Agent Communication",
+            "ASI08": "Cascading Failures",
+            "ASI09": "Human-Agent Trust Exploitation",
+            "ASI10": "Rogue Agents"
         },
         "status": {
             "accepted": "Qəbul edilib",

@@ -88,7 +88,7 @@ export default {
                 return {
                     [this.$t('threats.properties.number')]: threat.number,
                     [this.$t('threats.properties.title')]: threat.title,
-                    [this.$t('threats.properties.type')]: threat.type,
+                    [this.$t('threats.properties.type')]: this.formatType(threat),
                     [this.$t('threats.properties.severity')]: this.translateSeverity(threat.severity),
                     [this.$t('threats.properties.status')]: this.translateStatus(threat.status),
                     [this.$t('threats.properties.score')]: threat.score,
@@ -148,6 +148,9 @@ export default {
     methods: {
         toCamelCase(str) {
             return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, idx) => idx === 0 ? ltr.toLowerCase() : ltr.toUpperCase()).replace(/\s+/g, '');
+        },
+        formatType(threat) {
+            return threat.asi ? `${threat.type} (${threat.asi})` : threat.type;
         },
         translateSeverity(severity) {
             return ({

@@ -207,6 +207,11 @@
         "defaultDescription": "Neue LINDDUN Diagramm Beschreibung",
         "select": "LINDDUN"
       },
+      "maestro": {
+        "defaultTitle": "New MAESTRO diagram",
+        "defaultDescription": "New MAESTRO diagram description",
+        "select": "MAESTRO"
+      },
       "plot4ai": {
         "defaultTitle": "Neues PLOT4ai Diagramm",
         "defaultDescription": "Neue PLOT4ai Diagramm Beschreibung",
@@ -413,6 +418,17 @@
         "unawareness": "Unawareness",
         "nonCompliance": "Non-compliance"
       },
+      "maestro": {
+        "header": "--- MAESTRO ---",
+        "foundationModels": "L1 – Foundation models",
+        "dataOperations": "L2 – Data operations",
+        "agentFrameworks": "L3 – Agent frameworks",
+        "deploymentInfrastructure": "L4 – Deployment and infrastructure",
+        "evaluationObservability": "L5 – Evaluation and observability",
+        "securityCompliance": "L6 – Security and compliance",
+        "agentEcosystem": "L7 – Agent ecosystem",
+        "crossLayer": "Cross-layer"
+      },
       "plot4ai": {
         "header": "--- PLOT4ai ---",
         "techniqueProcesses": "Technique & Processes",
@@ -449,6 +465,7 @@
       "cia": "Neue CIA Bedrohung",
       "ciadie": "Neue CIA-DIE Bedrohung",
       "linddun": "Neue LINDDUN Bedrohung",
+      "maestro": "New MAESTRO threat",
       "plot4ai": "Neue PLOT4ai Bedrohung",
       "stride": "Neue STRIDE Bedrohung",
       "eop": "Neue EoP Bedrohung"
@@ -471,7 +488,21 @@
       "score": "Ergebnis",
       "status": "Status",
       "title": "Titel",
-      "type": "Typ"
+      "type": "Typ",
+      "asi": "OWASP Agentic Top 10"
+    },
+    "asi": {
+      "none": "None",
+      "ASI01": "Agent Goal Hijack",
+      "ASI02": "Tool Misuse and Exploitation",
+      "ASI03": "Identity and Privilege Abuse",
+      "ASI04": "Agentic Supply Chain Vulnerabilities",
+      "ASI05": "Unexpected Code Execution",
+      "ASI06": "Memory & Context Poisoning",
+      "ASI07": "Insecure Inter-Agent Communication",
+      "ASI08": "Cascading Failures",
+      "ASI09": "Human-Agent Trust Exploitation",
+      "ASI10": "Rogue Agents"
     },
     "status": {
       "accepted": "Accepted",

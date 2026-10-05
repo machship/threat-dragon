@@ -141,6 +141,7 @@
                                             <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'CIA'); close()">{{ $t('threatmodel.diagram.cia.select') }}</button>
                                             <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'CIADIE'); close()">{{ $t('threatmodel.diagram.die.select') }}</button>
                                             <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'LINDDUN'); close()">{{ $t('threatmodel.diagram.linddun.select') }}</button>
+                                            <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'MAESTRO'); close()">{{ $t('threatmodel.diagram.maestro.select') }}</button>
                                             <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'PLOT4ai'); close()">{{ $t('threatmodel.diagram.plot4ai.select') }}</button>
                                             <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'STRIDE'); close()">{{ $t('threatmodel.diagram.stride.select') }}</button>
                                             <button type="button" class="td-dropdown-item" @click="onDiagramTypeClick(idx, 'EOP'); close()">{{ $t('threatmodel.diagram.eop.select') }}</button>
@@ -366,6 +367,12 @@ export default {
                 placeholder = this.$t('threatmodel.diagram.linddun.defaultDescription');
                 break;
 
+            case 'MAESTRO':
+                thumbnail = './public/content/images/thumbnail.maestro.jpg';
+                defaultTitle = this.$t('threatmodel.diagram.maestro.defaultTitle');
+                placeholder = this.$t('threatmodel.diagram.maestro.defaultDescription');
+                break;
+
             case 'PLOT4ai':
                 thumbnail = './public/content/images/thumbnail.plot4ai.jpg';
                 defaultTitle = this.$t('threatmodel.diagram.plot4ai.defaultTitle');
@@ -397,6 +404,7 @@ export default {
             if (this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.cia.defaultTitle')
                 || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.die.defaultTitle')
                 || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.linddun.defaultTitle')
+                || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.maestro.defaultTitle')
                 || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.plot4ai.defaultTitle')
                 || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.stride.defaultTitle')
                 || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.eop.defaultTitle')

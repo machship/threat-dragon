@@ -27,7 +27,7 @@
                 >
                     <td>{{ threat.number }}</td>
                     <td>{{ threat.title }}</td>
-                    <td>{{ threat.type }}</td>
+                    <td>{{ formatType(threat) }}</td>
                     <td>{{ translateSeverity(threat.severity) }}</td>
                     <td>{{ translateStatus(threat.status) }}</td>
                     <td>{{ threat.score }}</td>
@@ -144,6 +144,9 @@ export default {
     methods: {
         toCamelCase(str) {
             return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, idx) => idx === 0 ? ltr.toLowerCase() : ltr.toUpperCase()).replace(/\s+/g, '');
+        },
+        formatType(threat) {
+            return threat.asi ? `${threat.type} (${threat.asi})` : threat.type;
         },
         translateSeverity(severity) {
             return ({

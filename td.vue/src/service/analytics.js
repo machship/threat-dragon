@@ -8,6 +8,7 @@ const methodologies = Object.freeze({
     DIE: 'CIADIE',
     CIADIE: 'CIADIE',
     LINDDUN: 'LINDDUN',
+    MAESTRO: 'MAESTRO',
     PLOT4ai: 'PLOT4AI',
     STRIDE: 'STRIDE',
     EOP: 'EOP'

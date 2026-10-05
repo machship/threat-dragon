@@ -168,6 +168,40 @@ describe('components/GraphThreats.vue', () => {
         it('displays the model type', () => {
             expect(wrapper.findComponent(TdBadge).text()).toBe('CIA');
         });
+
+        it('does not display an ASI for a non-MAESTRO threat', () => {
+            wrapper = getWrapper({ ...propsData, asi: 'ASI01' });
+            expect(wrapper.find('.threat-card').text()).not.toContain('ASI01');
+        });
+    });
+
+    describe('MAESTRO threat info', () => {
+        const getMaestroProps = (asi) => ({
+            ...getDefaultPropsData(),
+            modelType: 'MAESTRO',
+            type: 'Cross-layer',
+            asi
+        });
+
+        it('displays the ASI from props', () => {
+            wrapper = getWrapper(getMaestroProps('ASI07'));
+            expect(wrapper.find('.threat-card').text()).toContain('ASI07');
+        });
+
+        it('displays the ASI from the threat object', () => {
+            wrapper = getWrapper({ threat: getMaestroProps('ASI09') });
+            expect(wrapper.find('.threat-card').text()).toContain('ASI09');
+        });
+
+        it('displays the MAESTRO badge', () => {
+            wrapper = getWrapper(getMaestroProps());
+            expect(wrapper.findComponent(TdBadge).text()).toBe('MAESTRO');
+        });
+
+        it('resolves a missing ASI to an empty string', () => {
+            wrapper = getWrapper(getMaestroProps());
+            expect(wrapper.vm.asiResolved).toBe('');
+        });
     });
 
     describe('threat selected', () => {
