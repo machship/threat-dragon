@@ -113,11 +113,16 @@ describe('components/report/ReportEntity.vue', () => {
         });
 
         it('appends the ASI to the type', () => {
-            expect(wrapper.vm.formatType({ type: 'Cross-layer', asi: 'ASI08' })).toEqual('Cross-layer (ASI08)');
+            expect(wrapper.vm.formatType({ type: 'Cross-layer', modelType: 'MAESTRO', asi: 'ASI08' })).toEqual('Cross-layer (ASI08)');
+        });
+
+        it('ignores an ASI on a non-MAESTRO threat', () => {
+            expect(wrapper.vm.formatType({ type: 'Spoofing', modelType: 'STRIDE', asi: 'ASI08' })).toEqual('Spoofing');
         });
 
         it('shows the ASI in the table data', () => {
             const data = getData();
+            data.entity.data.threats[0].modelType = 'MAESTRO';
             data.entity.data.threats[0].asi = 'ASI02';
             setup(data);
             expect(wrapper.vm.tableData[0]['threats.properties.type']).toEqual('type1 (ASI02)');

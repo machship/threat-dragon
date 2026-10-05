@@ -150,7 +150,9 @@ export default {
             return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, idx) => idx === 0 ? ltr.toLowerCase() : ltr.toUpperCase()).replace(/\s+/g, '');
         },
         formatType(threat) {
-            return threat.asi ? `${threat.type} (${threat.asi})` : threat.type;
+            return threat.modelType === 'MAESTRO' && threat.asi
+                ? `${threat.type} (${threat.asi})`
+                : threat.type;
         },
         translateSeverity(severity) {
             return ({
