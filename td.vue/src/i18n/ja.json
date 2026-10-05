@@ -207,6 +207,11 @@
         "defaultDescription": "新しいLINDDUN図の概要",
         "select": "LINDDUN"
       },
+      "maestro": {
+        "defaultTitle": "New MAESTRO diagram",
+        "defaultDescription": "New MAESTRO diagram description",
+        "select": "MAESTRO"
+      },
       "plot4ai": {
         "defaultTitle": "PLOT4ai図",
         "defaultDescription": "新しいPLOT4ai図の概要",
@@ -413,6 +418,17 @@
         "unawareness": "Unawareness",
         "nonCompliance": "Non-compliance"
       },
+      "maestro": {
+        "header": "--- MAESTRO ---",
+        "foundationModels": "L1 – Foundation models",
+        "dataOperations": "L2 – Data operations",
+        "agentFrameworks": "L3 – Agent frameworks",
+        "deploymentInfrastructure": "L4 – Deployment and infrastructure",
+        "evaluationObservability": "L5 – Evaluation and observability",
+        "securityCompliance": "L6 – Security and compliance",
+        "agentEcosystem": "L7 – Agent ecosystem",
+        "crossLayer": "Cross-layer"
+      },
       "plot4ai": {
         "header": "--- PLOT4ai ---",
         "techniqueProcesses": "Technique & Processes",
@@ -449,6 +465,7 @@
       "cia": "CIA脅威を追加",
       "ciadie": "CIA-DIE脅威を追加",
       "linddun": "LINDDUN脅威を追加",
+      "maestro": "New MAESTRO threat",
       "plot4ai": "PLOT4ai脅威を追加",
       "stride": "STRIDE脅威を追加",
       "eop": "EoPゲーム脅威を追加"
@@ -471,7 +488,21 @@
       "score": "結果",
       "status": "ステータス",
       "title": "タイトル",
-      "type": "種別"
+      "type": "種別",
+      "asi": "OWASP Agentic Top 10"
+    },
+    "asi": {
+      "none": "None",
+      "ASI01": "Agent Goal Hijack",
+      "ASI02": "Tool Misuse and Exploitation",
+      "ASI03": "Identity and Privilege Abuse",
+      "ASI04": "Agentic Supply Chain Vulnerabilities",
+      "ASI05": "Unexpected Code Execution",
+      "ASI06": "Memory & Context Poisoning",
+      "ASI07": "Insecure Inter-Agent Communication",
+      "ASI08": "Cascading Failures",
+      "ASI09": "Human-Agent Trust Exploitation",
+      "ASI10": "Rogue Agents"
     },
     "status": {
       "accepted": "Accepted",

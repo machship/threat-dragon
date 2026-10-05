@@ -24,6 +24,10 @@
             <b-col>{{ typeResolved }}</b-col>
         </b-row>
 
+        <b-row v-if="modelTypeResolved === 'MAESTRO' && asiResolved">
+            <b-col>{{ asiResolved }}</b-col>
+        </b-row>
+
         <b-row v-if="modelTypeResolved === 'EOP' && (cardSuitResolved || cardNumberResolved)">
             <b-col>
                 <b-row v-if="cardSuitResolved">
@@ -164,7 +168,8 @@ export default {
         modelType: { type: String },
         number: { type: Number },
         cardSuit: { type: String },
-        cardNumber: { type: String }
+        cardNumber: { type: String },
+        asi: { type: String }
     },
 
     computed: {
@@ -181,7 +186,8 @@ export default {
                 modelType: t.modelType || this.modelType || '',
                 number: t.number || this.number || null,
                 cardSuit: t.cardSuit || this.cardSuit || '',
-                cardNumber: t.cardNumber || this.cardNumber || ''
+                cardNumber: t.cardNumber || this.cardNumber || '',
+                asi: t.asi || this.asi || ''
             };
         },
 
@@ -196,7 +202,8 @@ export default {
         modelTypeResolved() { return this.threatData.modelType; },
         numberResolved() { return this.threatData.number; },
         cardSuitResolved() { return getGame(this.threatData.type)?.getCardCategory(this.threatData.cardNumber); },
-        cardNumberResolved() { return this.threatData.cardNumber; }
+        cardNumberResolved() { return this.threatData.cardNumber; },
+        asiResolved() { return this.threatData.asi; }
     },
 
     methods: {

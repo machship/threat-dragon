@@ -87,6 +87,22 @@ describe('components/printed-report/ReportEntity.vue', () => {
             .toContain(propsData.entity.data.description);
     });
 
+    it('shows the ASI alongside the type', () => {
+        const data = getData();
+        data.entity.data.threats[0].modelType = 'MAESTRO';
+        data.entity.data.threats[0].asi = 'ASI02';
+        setup(data);
+        expect(tableHasCellWithText('type1 (ASI02)')).toEqual(true);
+    });
+
+    it('ignores an ASI on a non-MAESTRO threat', () => {
+        const data = getData();
+        data.entity.data.threats[0].modelType = 'STRIDE';
+        data.entity.data.threats[0].asi = 'ASI02';
+        setup(data);
+        expect(tableHasCellWithText('type1')).toEqual(true);
+    });
+
     it('shows the High threat', () => {
         expect(tableHasCellWithText('1')).toEqual(true);
     });

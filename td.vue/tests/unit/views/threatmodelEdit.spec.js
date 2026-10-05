@@ -135,7 +135,7 @@ describe('views/ThreatmodelEdit.vue', () => {
 
         it('selects each diagram type from the dropdown', async () => {
             const dropdown = wrapper.findComponent(TdDropdown);
-            const types = ['CIA', 'CIADIE', 'LINDDUN', 'PLOT4ai', 'STRIDE', 'EOP', 'Generic'];
+            const types = ['CIA', 'CIADIE', 'LINDDUN', 'MAESTRO', 'PLOT4ai', 'STRIDE', 'EOP', 'Generic'];
 
             for (const index of types.keys()) {
                 await dropdown.find('.td-dropdown-toggle').trigger('click');
@@ -466,7 +466,8 @@ describe('views/ThreatmodelEdit.vue', () => {
             ['DIE', 'threatmodel.diagram.cia.defaultTitle', 'DIE', 'threatmodel.diagram.die.defaultTitle'],
             ['CIADIE', 'threatmodel.diagram.die.defaultTitle', 'CIADIE', 'threatmodel.diagram.die.defaultTitle'],
             ['LINDDUN', 'threatmodel.diagram.die.defaultTitle', 'LINDDUN', 'threatmodel.diagram.linddun.defaultTitle'],
-            ['PLOT4ai', 'threatmodel.diagram.linddun.defaultTitle', 'PLOT4ai', 'threatmodel.diagram.plot4ai.defaultTitle'],
+            ['MAESTRO', 'threatmodel.diagram.linddun.defaultTitle', 'MAESTRO', 'threatmodel.diagram.maestro.defaultTitle'],
+            ['PLOT4ai', 'threatmodel.diagram.maestro.defaultTitle', 'PLOT4ai', 'threatmodel.diagram.plot4ai.defaultTitle'],
             ['STRIDE', 'threatmodel.diagram.plot4ai.defaultTitle', 'STRIDE', 'threatmodel.diagram.stride.defaultTitle'],
             ['EOP', 'threatmodel.diagram.stride.defaultTitle', 'EOP', 'threatmodel.diagram.eop.defaultTitle'],
             ['unknown', 'threatmodel.diagram.eop.defaultTitle', 'threatmodel.diagram.generic.select', 'threatmodel.diagram.generic.defaultTitle']
@@ -477,6 +478,14 @@ describe('views/ThreatmodelEdit.vue', () => {
             wrapper.vm.onDiagramTypeClick(0, type);
 
             expect(diagram).toMatchObject({ diagramType: expectedType, title: expectedTitle });
+        });
+
+        it('uses the generic thumbnail for MAESTRO so older releases can open the model', () => {
+            const diagram = wrapper.vm.model.detail.diagrams[0];
+
+            wrapper.vm.onDiagramTypeClick(0, 'MAESTRO');
+
+            expect(diagram.thumbnail).toBe('./public/content/images/thumbnail.jpg');
         });
 
         it('preserves a custom diagram title when changing diagram type', () => {

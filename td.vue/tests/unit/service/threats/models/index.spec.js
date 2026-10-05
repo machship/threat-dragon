@@ -11,9 +11,24 @@ describe('service/threats/models/index.js', () => {
             expect(models.allModels.includes('CIA')).toBe(true);
             expect(models.allModels.includes('CIADIE')).toBe(true);
             expect(models.allModels.includes('LINDDUN')).toBe(true);
+            expect(models.allModels.includes('MAESTRO')).toBe(true);
             expect(models.allModels.includes('PLOT4ai')).toBe(true);
             expect(models.allModels.includes('STRIDE')).toBe(true);
             expect(models.allModels.includes('EOP')).toBe(true);
+        });
+    });
+
+    describe('asiIds', () => {
+        it('defines the ten OWASP Agentic Top 10 IDs', () => {
+            expect(models.asiIds).toHaveLength(10);
+        });
+
+        it('starts at ASI01', () => {
+            expect(models.asiIds[0]).toEqual('ASI01');
+        });
+
+        it('ends at ASI10', () => {
+            expect(models.asiIds[9]).toEqual('ASI10');
         });
     });
 
@@ -32,6 +47,11 @@ describe('service/threats/models/index.js', () => {
         it('identifies a LINDDUN threat', () => {
             expect(models.getByTranslationValue('threats.model.linddun.linkability'))
                 .toEqual('LINDDUN');
+        });
+
+        it('identifies a MAESTRO threat', () => {
+            expect(models.getByTranslationValue('threats.model.maestro.crossLayer'))
+                .toEqual('MAESTRO');
         });
 
         it('identifies a PLOT4ai threat', () => {
@@ -109,6 +129,32 @@ describe('service/threats/models/index.js', () => {
             expect(Object.keys(models.getThreatTypesByElement('linddun', 'tm.Flow'))).toHaveLength(6);
         });
 
+        it('gets the MAESTRO Actor threat types', () => {
+            expect(Object.keys(models.getThreatTypesByElement('maestro', 'tm.Actor'))).toHaveLength(3);
+        });
+
+        it('gets the MAESTRO Process threat types', () => {
+            expect(Object.keys(models.getThreatTypesByElement('MAESTRO', 'tm.Process'))).toHaveLength(7);
+        });
+
+        it('gets the MAESTRO Store threat types', () => {
+            expect(Object.keys(models.getThreatTypesByElement('maestro', 'tm.Store'))).toHaveLength(6);
+        });
+
+        it('gets the MAESTRO DataFlow threat types', () => {
+            expect(Object.keys(models.getThreatTypesByElement('maestro', 'tm.Flow'))).toHaveLength(6);
+        });
+
+        it('offers the MAESTRO cross-layer type on the actor', () => {
+            expect(Object.keys(models.getThreatTypesByElement('MAESTRO', 'tm.Actor')))
+                .toContain('threats.model.maestro.crossLayer');
+        });
+
+        it('lists the MAESTRO process types in layer order', () => {
+            expect(Object.keys(models.getThreatTypesByElement('MAESTRO', 'tm.Process'))[0])
+                .toEqual('threats.model.maestro.foundationModels');
+        });
+
         it('gets the PLOT4ai Actor threat types', () => {
             expect(Object.keys(models.getThreatTypesByElement('plot4ai', 'tm.Actor'))).toHaveLength(6);
         });
@@ -143,7 +189,7 @@ describe('service/threats/models/index.js', () => {
 
         it('returns all threat types when the model type is not found', () => {
             console.error = jest.fn();
-            expect(Object.keys(models.getThreatTypesByElement('fake', 'tm.Actor'))).toHaveLength(35);
+            expect(Object.keys(models.getThreatTypesByElement('fake', 'tm.Actor'))).toHaveLength(44);
         });
 
         it('uses the CIADIE header translation key for an unknown model type', () => {
@@ -205,6 +251,30 @@ describe('service/threats/models/index.js', () => {
 
         it('gets the LINDDUN Flow map', () => {
             expect(Object.keys(models.getFrequencyMapByElement('linddun', 'tm.Flow'))).toHaveLength(6);
+        });
+
+        it('gets the MAESTRO Actor map', () => {
+            expect(Object.keys(models.getFrequencyMapByElement('MAESTRO', 'tm.Actor'))).toHaveLength(3);
+        });
+
+        it('gets the MAESTRO Process map', () => {
+            expect(Object.keys(models.getFrequencyMapByElement('maestro', 'tm.Process'))).toHaveLength(7);
+        });
+
+        it('gets the MAESTRO Store map', () => {
+            expect(Object.keys(models.getFrequencyMapByElement('maestro', 'tm.Store'))).toHaveLength(6);
+        });
+
+        it('gets the MAESTRO Flow map', () => {
+            expect(Object.keys(models.getFrequencyMapByElement('maestro', 'tm.Flow'))).toHaveLength(6);
+        });
+
+        it('provides a MAESTRO default map', () => {
+            expect(Object.keys(models.getFrequencyMapByElement('maestro', 'foobar'))).toHaveLength(6);
+        });
+
+        it('starts the MAESTRO map at zero', () => {
+            expect(models.getFrequencyMapByElement('MAESTRO', 'tm.Actor').crossLayer).toEqual(0);
         });
 
         it('gets the PLOT4ai Actor map', () => {

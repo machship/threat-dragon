@@ -207,6 +207,11 @@
         "defaultDescription": "新LINDDUN图描述",
         "select": "LINDDUN"
       },
+      "maestro": {
+        "defaultTitle": "New MAESTRO diagram",
+        "defaultDescription": "New MAESTRO diagram description",
+        "select": "MAESTRO"
+      },
       "plot4ai": {
         "defaultTitle": "新PLOT4ai图",
         "defaultDescription": "新PLOT4ai图描述",
@@ -413,6 +418,17 @@
         "unawareness": "不知情",
         "nonCompliance": "不合规"
       },
+      "maestro": {
+        "header": "--- MAESTRO ---",
+        "foundationModels": "L1 – Foundation models",
+        "dataOperations": "L2 – Data operations",
+        "agentFrameworks": "L3 – Agent frameworks",
+        "deploymentInfrastructure": "L4 – Deployment and infrastructure",
+        "evaluationObservability": "L5 – Evaluation and observability",
+        "securityCompliance": "L6 – Security and compliance",
+        "agentEcosystem": "L7 – Agent ecosystem",
+        "crossLayer": "Cross-layer"
+      },
       "plot4ai": {
         "header": "--- PLOT4ai ---",
         "techniqueProcesses": "技术 & 过程",
@@ -449,6 +465,7 @@
       "cia": "新CIA威胁",
       "ciadie": "新CIA-DIE威胁",
       "linddun": "新LINDDUN威胁",
+      "maestro": "New MAESTRO threat",
       "plot4ai": "新PLOT4ai威胁",
       "stride": "新STRIDE威胁",
       "eop": "新EoP游戏威胁"
@@ -471,7 +488,21 @@
       "score": "评分",
       "status": "状态",
       "title": "标题",
-      "type": "类型"
+      "type": "类型",
+      "asi": "OWASP Agentic Top 10"
+    },
+    "asi": {
+      "none": "None",
+      "ASI01": "Agent Goal Hijack",
+      "ASI02": "Tool Misuse and Exploitation",
+      "ASI03": "Identity and Privilege Abuse",
+      "ASI04": "Agentic Supply Chain Vulnerabilities",
+      "ASI05": "Unexpected Code Execution",
+      "ASI06": "Memory & Context Poisoning",
+      "ASI07": "Insecure Inter-Agent Communication",
+      "ASI08": "Cascading Failures",
+      "ASI09": "Human-Agent Trust Exploitation",
+      "ASI10": "Rogue Agents"
     },
     "status": {
       "accepted": "Accepted",

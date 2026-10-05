@@ -374,6 +374,88 @@ describe('components/ThreatEditDialog.vue', () => {
         });
     });
 
+    describe('MAESTRO ASI field', () => {
+        const getMaestroThreat = (asi) => ({
+            ...getThreatData(),
+            modelType: 'MAESTRO',
+            type: 'Cross-layer',
+            ...(asi === undefined ? {} : { asi })
+        });
+
+        const editMaestroThreat = (asi) => {
+            wrapper = getWrapper();
+            wrapper.vm.$refs.editModal.show = jest.fn();
+            wrapper.vm.$refs.editModal.hide = jest.fn();
+            mockStore.dispatch = jest.fn();
+            dataChanged.updateStyleAttrs = jest.fn();
+            mockStore.state.cell.ref.data.threats = [getMaestroThreat(asi)];
+            wrapper.vm.editThreat(threatId);
+        };
+
+        const asiInputs = () => wrapper.findAllComponents(TdFormSelect)
+            .filter(x => x.attributes('id') === 'threat-asi');
+
+        it('shows the ASI input for a MAESTRO threat', async () => {
+            editMaestroThreat();
+            await wrapper.vm.$nextTick();
+            expect(asiInputs()).toHaveLength(1);
+        });
+
+        it('hides the ASI input for a non-MAESTRO threat', async () => {
+            wrapper = getWrapper();
+            wrapper.vm.$refs.editModal.show = jest.fn();
+            wrapper.vm.editThreat(threatId);
+            await wrapper.vm.$nextTick();
+            expect(asiInputs()).toHaveLength(0);
+        });
+
+        it('defaults a missing ASI to none', () => {
+            editMaestroThreat();
+            expect(wrapper.vm.threat.asi).toBe('');
+        });
+
+        it('keeps an existing ASI when editing', () => {
+            editMaestroThreat('ASI06');
+            expect(wrapper.vm.threat.asi).toBe('ASI06');
+        });
+
+        it('offers none plus the ten ASI options', () => {
+            editMaestroThreat();
+            expect(wrapper.vm.asiOptions).toHaveLength(11);
+        });
+
+        it('starts the ASI options with none', () => {
+            editMaestroThreat();
+            expect(wrapper.vm.asiOptions[0]).toEqual({ value: '', text: 'threats.asi.none' });
+        });
+
+        it('labels each ASI option with its ID', () => {
+            editMaestroThreat();
+            expect(wrapper.vm.asiOptions[1].text).toBe('ASI01: threats.asi.ASI01');
+        });
+
+        it('saves the selected ASI on the threat', () => {
+            editMaestroThreat();
+            wrapper.vm.threat.asi = 'ASI03';
+            wrapper.vm.updateThreat();
+            expect(mockStore.state.cell.ref.data.threats[0].asi).toBe('ASI03');
+        });
+
+        it('removes the ASI when it is cleared', () => {
+            editMaestroThreat('ASI03');
+            wrapper.vm.threat.asi = '';
+            wrapper.vm.updateThreat();
+            expect(mockStore.state.cell.ref.data.threats[0]).not.toHaveProperty('asi');
+        });
+
+        it('removes the ASI when the threat is no longer MAESTRO', () => {
+            editMaestroThreat('ASI03');
+            wrapper.vm.threat.modelType = 'STRIDE';
+            wrapper.vm.updateThreat();
+            expect(mockStore.state.cell.ref.data.threats[0]).not.toHaveProperty('asi');
+        });
+    });
+
     describe('updateThreat card validation', () => {
         beforeEach(() => {
             wrapper = getWrapper();

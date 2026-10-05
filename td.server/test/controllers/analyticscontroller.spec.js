@@ -89,6 +89,19 @@ describe('controllers/analyticscontroller.js', () => {
         expect(response.status).to.have.been.calledWith(204);
     });
 
+    it('forwards the MAESTRO methodology', async () => {
+        const sendEventDep = sinon.stub().resolves();
+        const controller = createAnalyticsController({ envDep: { get: () => ({ config: configured }) }, sendEventDep });
+        const request = getMockRequest();
+        request.body = { event: analyticsEvents.DIAGRAM_METHODOLOGY_USED, props: { methodology: 'MAESTRO' } };
+        const response = getMockResponse();
+        await controller.track(request, response);
+        expect(sendEventDep).to.have.been.calledWith(
+            configured,
+            sinon.match({ name: analyticsEvents.DIAGRAM_METHODOLOGY_USED })
+        );
+    });
+
     it('returns success when upstream forwarding fails', async () => {
         const loggerDep = { warn: sinon.stub() };
         const controller = createAnalyticsController({
