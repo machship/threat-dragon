@@ -530,6 +530,14 @@ describe('views/ThreatmodelEdit.vue', () => {
                 expect(cell.data.threatFrequency).toEqual({ linkability: 0, identifiability: 1, unawareness: 0 });
             });
 
+            it('rebuilds a MAESTRO map with the actor layers', () => {
+                cell.data.threats = [{ type: 'threats.model.maestro.agentEcosystem' }];
+
+                wrapper.vm.onDiagramTypeClick(0, 'MAESTRO');
+
+                expect(cell.data.threatFrequency).toEqual({ securityCompliance: 0, agentEcosystem: 1, crossLayer: 0 });
+            });
+
             it('rebuilds a DIE map using the CIADIE keys', () => {
                 cell.data.threats = [{ type: 'threats.model.ciadie.ephemeral' }];
 
