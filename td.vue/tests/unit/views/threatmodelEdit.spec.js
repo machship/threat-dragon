@@ -496,6 +496,78 @@ describe('views/ThreatmodelEdit.vue', () => {
 
             expect(diagram.title).toBe('Custom title');
         });
+
+        describe('threat frequency maps', () => {
+            const strideFrequency = () => ({
+                spoofing: 0,
+                tampering: 1,
+                repudiation: 0,
+                informationDisclosure: 0,
+                denialOfService: 0,
+                elevationOfPrivilege: 0
+            });
+            let diagram, cell;
+
+            beforeEach(() => {
+                diagram = wrapper.vm.model.detail.diagrams[0];
+                cell = {
+                    data: {
+                        type: 'tm.Actor',
+                        threats: [{ type: 'threats.model.linddun.identifiability' }],
+                        threatFrequency: strideFrequency()
+                    }
+                };
+                diagram.cells = [cell];
+            });
+
+            afterEach(() => {
+                delete diagram.cells;
+            });
+
+            it('rebuilds the map for the new methodology and element type', () => {
+                wrapper.vm.onDiagramTypeClick(0, 'LINDDUN');
+
+                expect(cell.data.threatFrequency).toEqual({ linkability: 0, identifiability: 1, unawareness: 0 });
+            });
+
+            it('rebuilds a DIE map using the CIADIE keys', () => {
+                cell.data.threats = [{ type: 'threats.model.ciadie.ephemeral' }];
+
+                wrapper.vm.onDiagramTypeClick(0, 'DIE');
+
+                expect(cell.data.threatFrequency.ephemeral).toBe(1);
+            });
+
+            it('rebuilds the map when the cell has no threats array', () => {
+                delete cell.data.threats;
+
+                wrapper.vm.onDiagramTypeClick(0, 'CIA');
+
+                expect(cell.data.threatFrequency).toEqual({ confidentiality: 0, integrity: 0, availability: 0 });
+            });
+
+            it('removes the map for a methodology without frequency maps', () => {
+                wrapper.vm.onDiagramTypeClick(0, 'EOP');
+
+                expect(cell.data.threatFrequency).toBeUndefined();
+            });
+
+            it('does not add a map to a cell that had none', () => {
+                delete cell.data.threatFrequency;
+
+                wrapper.vm.onDiagramTypeClick(0, 'LINDDUN');
+
+                expect(cell.data.threatFrequency).toBeUndefined();
+            });
+
+            it('ignores cells without data', () => {
+                diagram.cells = [{ id: 'no-data' }];
+
+                wrapper.vm.onDiagramTypeClick(0, 'LINDDUN');
+
+                expect(diagram.cells).toEqual([{ id: 'no-data' }]);
+            });
+        });
     });
 
     it('finishes the editing session when the view unmounts', () => {

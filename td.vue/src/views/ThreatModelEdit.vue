@@ -237,6 +237,8 @@ import TdFormTags from '@/components/FormTags.vue';
 import TdInputGroup from '@/components/InputGroup.vue';
 import tmActions from '@/store/actions/threatmodel.js';
 import analytics, { methodologyForDiagramType } from '@/service/analytics.js';
+import threatModels from '@/service/threats/models/index.js';
+import { translateKnownKey } from '@/service/i18n/translation.js';
 
 export default {
     name: 'ThreatModelEdit',
@@ -400,6 +402,7 @@ export default {
             this.model.detail.diagrams[idx].diagramType = type;
             this.model.detail.diagrams[idx].placeholder = placeholder;
             this.model.detail.diagrams[idx].thumbnail = thumbnail;
+            this.rebuildThreatFrequency(this.model.detail.diagrams[idx], type);
             // if the diagram title is still default, then change it to the new default title
             if (this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.cia.defaultTitle')
                 || this.model.detail.diagrams[idx].title === this.$t('threatmodel.diagram.die.defaultTitle')
@@ -413,6 +416,29 @@ export default {
                 this.model.detail.diagrams[idx].title = defaultTitle;
             }
             this.$store.dispatch(tmActions.modified);
+        },
+        // new threat types are picked from the per-cell frequency map, so a map keyed for
+        // the previous methodology would produce untranslatable types after a switch
+        rebuildThreatFrequency(diagram, type) {
+            const modelType = type === 'DIE' ? 'CIADIE' : type;
+            (diagram.cells || []).forEach((cell) => {
+                if (!cell.data?.threatFrequency) {
+                    return;
+                }
+                const freqMap = threatModels.getFrequencyMapByElement(modelType, cell.data.type);
+                if (!freqMap) {
+                    delete cell.data.threatFrequency;
+                    return;
+                }
+                (cell.data.threats || []).forEach((threat) => {
+                    Object.keys(freqMap).forEach((k) => {
+                        if (translateKnownKey(this.$t, `threats.model.${modelType.toLowerCase()}.${k}`) === threat.type) {
+                            freqMap[k]++;
+                        }
+                    });
+                });
+                cell.data.threatFrequency = freqMap;
+            });
         },
         onRemoveDiagramClick(idx) {
             this.model.detail.diagrams.splice(idx, 1);
