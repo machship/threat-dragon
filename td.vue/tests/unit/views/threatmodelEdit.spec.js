@@ -538,6 +538,14 @@ describe('views/ThreatmodelEdit.vue', () => {
                 expect(cell.data.threatFrequency).toEqual({ securityCompliance: 0, agentEcosystem: 1, crossLayer: 0 });
             });
 
+            it('counts carried-over threats that share a type label with the new methodology', () => {
+                cell.data.threats = [{ type: 'threats.model.ciadie.confidentiality', modelType: 'CIA' }];
+
+                wrapper.vm.onDiagramTypeClick(0, 'CIADIE');
+
+                expect(cell.data.threatFrequency.confidentiality).toBe(1);
+            });
+
             it('rebuilds a DIE map using the CIADIE keys', () => {
                 cell.data.threats = [{ type: 'threats.model.ciadie.ephemeral' }];
 

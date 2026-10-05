@@ -430,6 +430,8 @@ export default {
                     delete cell.data.threatFrequency;
                     return;
                 }
+                // match on the type label only, not modelType, because ThreatEditDialog decrements
+                // the same way; excluding carried-over threats here would drive counts negative
                 (cell.data.threats || []).forEach((threat) => {
                     Object.keys(freqMap).forEach((k) => {
                         if (translateKnownKey(this.$t, `threats.model.${modelType.toLowerCase()}.${k}`) === threat.type) {
