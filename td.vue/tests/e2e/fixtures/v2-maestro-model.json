@@ -14,7 +14,7 @@
                 "title": "Agent Gateway",
                 "diagramType": "MAESTRO",
                 "placeholder": "New MAESTRO diagram description",
-                "thumbnail": "./public/content/images/thumbnail.maestro.jpg",
+                "thumbnail": "./public/content/images/thumbnail.jpg",
                 "version": "2.6.2",
                 "cells": [
                     {

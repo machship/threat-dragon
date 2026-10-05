@@ -480,6 +480,14 @@ describe('views/ThreatmodelEdit.vue', () => {
             expect(diagram).toMatchObject({ diagramType: expectedType, title: expectedTitle });
         });
 
+        it('uses the generic thumbnail for MAESTRO so older releases can open the model', () => {
+            const diagram = wrapper.vm.model.detail.diagrams[0];
+
+            wrapper.vm.onDiagramTypeClick(0, 'MAESTRO');
+
+            expect(diagram.thumbnail).toBe('./public/content/images/thumbnail.jpg');
+        });
+
         it('preserves a custom diagram title when changing diagram type', () => {
             const diagram = wrapper.vm.model.detail.diagrams[0];
             diagram.title = 'Custom title';

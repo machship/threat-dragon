@@ -368,7 +368,7 @@ export default {
                 break;
 
             case 'MAESTRO':
-                thumbnail = './public/content/images/thumbnail.maestro.jpg';
+                thumbnail = './public/content/images/thumbnail.jpg';
                 defaultTitle = this.$t('threatmodel.diagram.maestro.defaultTitle');
                 placeholder = this.$t('threatmodel.diagram.maestro.defaultDescription');
                 break;
