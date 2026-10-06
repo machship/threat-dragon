@@ -124,7 +124,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.7.0",
     "bootstrap": "^4.6.2",
-    "browserstack-cypress-cli": "1.36.19",
+    "browserstack-cypress-cli": "1.37.1",
     "chromedriver": "^134.0.0",
     "cypress": "^15.21.1",
     "electron": "^42.11.3",
@@ -213,12 +213,13 @@
     "minimizer-webpack-plugin": ">=5.10.1",
     "micromatch@<4.0.8": "4.0.8",
     "webdriver": ">=9.31.7",
-    "undici": ">=6.28.1"
+    "undici": ">=7.29.1 <8",
+    "ip-address": "10.7.2"
   },
   "main": "background.js",
   "allowScripts": {
     "chromedriver@134.0.5": true,
-    "cypress@15.19.0": true,
-    "electron-chromedriver@42.9.2": true
+    "cypress@15.21.1": true,
+    "electron-chromedriver@42.11.3": true
   }
 }
