@@ -568,8 +568,17 @@ describe('views/ThreatmodelEdit.vue', () => {
                 expect(cell.data.threatFrequency).toBeUndefined();
             });
 
-            it('does not add a map to a cell that had none', () => {
+            it('restores the map with existing threat counts after switching to EOP and back', () => {
+                wrapper.vm.onDiagramTypeClick(0, 'EOP');
+
+                wrapper.vm.onDiagramTypeClick(0, 'LINDDUN');
+
+                expect(cell.data.threatFrequency).toEqual({ linkability: 0, identifiability: 1, unawareness: 0 });
+            });
+
+            it('does not add a map to a cell with no map and no threats', () => {
                 delete cell.data.threatFrequency;
+                cell.data.threats = [];
 
                 wrapper.vm.onDiagramTypeClick(0, 'LINDDUN');
 

@@ -422,7 +422,9 @@ export default {
         rebuildThreatFrequency(diagram, type) {
             const modelType = type === 'DIE' ? 'CIADIE' : type;
             (diagram.cells || []).forEach((cell) => {
-                if (!cell.data?.threatFrequency) {
+                // a cell with neither a map nor threats gets one lazily when its first threat is added;
+                // a cell with threats but no map (e.g. after a switch to EOP and back) needs rebuilding
+                if (!cell.data?.threatFrequency && !cell.data?.threats?.length) {
                     return;
                 }
                 const freqMap = threatModels.getFrequencyMapByElement(modelType, cell.data.type);
