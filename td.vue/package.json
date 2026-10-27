@@ -221,6 +221,6 @@
   "allowScripts": {
     "chromedriver@134.0.5": true,
     "cypress@15.21.1": true,
-    "electron-chromedriver@42.11.3": true
+    "electron-chromedriver@42.11.15": true
   }
 }
