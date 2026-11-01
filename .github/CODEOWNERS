@@ -1,14 +1,35 @@
-# default reviewers for pull requests
-*	@jgadsden @lreading
+# CODEOWNERS for the machship/threat-dragon fork
+#
+# Owners listed here are automatically requested for review on matching PRs.
+# Last matching pattern wins. Review is owned by the machship Security & IT team
+# (https://github.com/orgs/machship/teams/sec-it).
 
-# dependency maintenance
-/.github/dependabot.yaml	@lreading
-/Dockerfile	@lreading
-/package.json	@lreading
-/package-lock.json	@lreading
-/td.server/package.json	@lreading
-/td.server/package-lock.json	@lreading
-/td.vue/package.json	@lreading
-/td.vue/package-lock.json	@lreading
-/docs/Gemfile	@lreading
-/docs/Gemfile.lock	@lreading
+# Default reviewers for everything not matched more specifically below
+*	@machship/sec-it
+
+# Front-end / desktop app (Vue3, Electron)
+/td.vue/	@machship/sec-it
+
+# Optional backend server (Node.js, Express)
+/td.server/	@machship/sec-it
+
+# Maintainer helper scripts
+/scripts/	@machship/sec-it
+
+# Public documentation site (human-authored)
+/docs/	@machship/sec-it
+
+# Repo governance, CI, and security tooling
+/.github/	@machship/sec-it
+
+# Dependency maintenance (lock-files and manifests)
+/.github/dependabot.yaml	@machship/sec-it
+/Dockerfile	@machship/sec-it
+/package.json	@machship/sec-it
+/package-lock.json	@machship/sec-it
+/td.server/package.json	@machship/sec-it
+/td.server/package-lock.json	@machship/sec-it
+/td.vue/package.json	@machship/sec-it
+/td.vue/package-lock.json	@machship/sec-it
+/docs/Gemfile	@machship/sec-it
+/docs/Gemfile.lock	@machship/sec-it
