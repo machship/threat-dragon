@@ -96,7 +96,7 @@
     "passive-events-support": "^1.1.0",
     "uuid": "11.1.1",
     "vue": "^3.5.42",
-    "vue-i18n": "^11.4.14",
+    "vue-i18n": "^11.4.16",
     "vue-router": "^4.6.4",
     "vue-toastification": "^2.0.0-rc.5",
     "vuex": "^4.1.0"
@@ -169,6 +169,9 @@
     "http-proxy-agent@4.0.1": {
       "@tootallnate/once": "2.0.1"
     },
+    "@intlify/core-base": "11.4.16",
+    "@intlify/message-compiler": "11.4.16",
+    "@intlify/shared": "11.4.16",
     "braces": ">=3.0.3",
     "cross-spawn@<7.0.0": "6.0.6",
     "electron-builder": "$electron-builder",
